@@ -24,7 +24,7 @@ public class InsuranceService {
 		String uniqueid =  String.valueOf(generateid());
 		entity.setId(uniqueid);
 		entity.setAsNew(true);
-		log.info("Inserting InsuranceEntity into repository: {}", entity);
+		log.info("Inserting InsuranceEntity into the repository: {}", entity);
 		return repo.save(entity);
 	}
 	
