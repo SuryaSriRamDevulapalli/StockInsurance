@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="StockInsurance">
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/insurance/StockInsurance/insurance/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/insurance/StockInsurance/insurance/src/test/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/insurance/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/insurance/src/test/java"/>
+        <property name="context-root" value="StockInsurance"/>
+        <property name="java-output-path" value="/StockInsurance/bin"/>
+    </wb-module>
+</project-modules>
