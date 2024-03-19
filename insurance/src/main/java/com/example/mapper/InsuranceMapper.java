@@ -8,12 +8,11 @@ public class InsuranceMapper {
 	public static InsuranceDto maptoinsurancedto(InsuranceEntity entity) {
 		
 		return new InsuranceDto(
-				entity.getId(),entity.getTypeofstock(),entity.getStockvalue(),entity.getDamagescovered(),entity.getPremiumcharges(),entity.getInsurancecalculation(), true);
+				entity.getId(),entity.getTypeofstock(),entity.getStockvalue(),entity.getRiskfactor(),entity.getDamagescovered(),entity.getPremiumcharges(),entity.getCoverpremiumcount(),entity.getCoverpremiumvlaue(),entity.getInsurancecalculation(), true);
 	}
-
 	public static InsuranceEntity maptoinsuranceentity(InsuranceDto dto) {
 		
 		return new InsuranceEntity(
-				dto.getId(),dto.getTypeofstock(),dto.getStockvalue(),dto.getDamagescovered(),dto.getPremiumcharges(),dto.getInsurancecalculation(), true);
+				dto.getId(),dto.getTypeofstock(),dto.getStockvalue(),dto.getRiskfactor(),dto.getDamagescovered(),dto.getPremiumcharges(),dto.getCoverpremiumcount(),dto.getCoverpremiumvlaue(),dto.getInsurancecalculation(), true);
 	}
 }
