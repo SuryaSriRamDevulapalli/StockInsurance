@@ -9,6 +9,7 @@ import com.example.entity.InsuranceEntity;
 import com.example.repo.InsuranceRepo;
 
 import lombok.extern.slf4j.Slf4j;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Slf4j
@@ -75,7 +76,17 @@ public class InsuranceService {
 		int premiumcharges = entity.getPremiumcharges();
 		
 		double insurance = (premiumcharges + (stock* riskfactor) + premiumvalue)/12;
-	
 		return insurance;
+	}
+
+	public Mono<InsuranceEntity> getbyid(String id) {
+		log.info("retreiving insurance entity by id: {}"+id);
+		Mono<InsuranceEntity> entity = repo.findById(id);
+		return entity;
+	}
+
+	public Flux<InsuranceEntity> getAllProducts() {
+	Flux<InsuranceEntity> entity = repo.findAll();
+		return entity;
 	}
 }
