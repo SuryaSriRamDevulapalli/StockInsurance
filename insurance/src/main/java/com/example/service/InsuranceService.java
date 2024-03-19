@@ -3,7 +3,9 @@ package com.example.service;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.entity.InsuranceEntity;
 import com.example.repo.InsuranceRepo;
@@ -88,5 +90,26 @@ public class InsuranceService {
 	public Flux<InsuranceEntity> getAllProducts() {
 	Flux<InsuranceEntity> entity = repo.findAll();
 		return entity;
+	}
+
+	public Mono<InsuranceEntity> updatebyId(String id, InsuranceEntity entity) {
+		log.info("Updating InsuranceEntity with id: {}", id);
+		
+		return repo.findById(id)
+				.flatMap(newEntity ->{
+					newEntity.setPremiumcharges(entity.getPremiumcharges());
+					newEntity.setAsNew(false);
+					return repo.save(newEntity);
+				})
+				.switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND,
+						"InsuranceEntity not found with id " + id)));
+	
+		
+	}
+
+	public Mono<Void> deleteById(String id) {
+		log.info("Deleted InsuranceEntity with id: {}",id);
+		return repo.deleteById(id);
+	 
 	}
 }
