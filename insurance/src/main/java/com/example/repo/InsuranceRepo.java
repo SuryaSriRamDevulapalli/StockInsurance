@@ -9,5 +9,4 @@ import com.example.entity.InsuranceEntity;
 @Repository
 public interface InsuranceRepo extends ReactiveCrudRepository<InsuranceEntity, String>{
 	
-
 }
