@@ -23,6 +23,9 @@ public class InsuranceService {
 		
 		String uniqueid =  String.valueOf(generateid());
 		entity.setId(uniqueid);
+		entity.setRiskfactor(generateriskfactor(entity));
+		entity.setCoverpremiumvlaue(generatecoverpremium(entity));
+		entity.setInsurancecalculation(insuranceCalculation(entity));
 		entity.setAsNew(true);
 		log.info("Inserting InsuranceEntity into the repository: {}", entity);
 		return repo.save(entity);
@@ -32,7 +35,47 @@ public class InsuranceService {
 		return new Random().nextInt(9000000) + 1000000;
 	}
 	
+	private double generateriskfactor(InsuranceEntity entity) {
+		String type = entity.getTypeofstock();
+		Double riskfactor = 0.0;
+		
+		if(type.equalsIgnoreCase("Buliding")) {
+			riskfactor = 0.85;
+		}else if(type.equalsIgnoreCase("Content")){
+			riskfactor = 0.80;
+		}else if(type.equalsIgnoreCase("Inventory")){
+			riskfactor = 0.75;
+		}
+		return riskfactor;
+	}
 	
+	private int generatecoverpremium(InsuranceEntity entity) {
+		
+		int count = entity.getCoverpremiumcount();
+		int value = 0 ;
+		
+		if(count==1) {
+			value = 2000;
+		}else if(count==2){
+			value = 2500;
+		}else if(count==3){
+			value = 3000;
+		}
+		else if(count==0){
+			value = 0;
+		}
+		return value;
+	}
 	
-
+	private double insuranceCalculation(InsuranceEntity entity) {
+		
+		int premiumvalue = entity.getCoverpremiumvlaue();
+		Double riskfactor = entity.getRiskfactor();
+		int stock = entity.getStockvalue();
+		int premiumcharges = entity.getPremiumcharges();
+		
+		double insurance = (premiumcharges + (stock* riskfactor) + premiumvalue)/12;
+	
+		return insurance;
+	}
 }

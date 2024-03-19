@@ -26,11 +26,17 @@ public class InsuranceEntity implements Persistable<String> {
 
     private int stockvalue;
     
+    private double riskfactor;
+    
     private int damagescovered;
     
     private int premiumcharges;
     
-    private int insurancecalculation;
+    private int coverpremiumcount;
+    
+    private int coverpremiumvlaue;
+    
+    private double insurancecalculation;
 
     @Transient
     private boolean isNew = true;
