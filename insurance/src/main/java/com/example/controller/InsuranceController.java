@@ -2,6 +2,8 @@ package com.example.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,7 @@ import com.example.entity.InsuranceEntity;
 import com.example.repo.InsuranceRepo;
 import com.example.service.InsuranceService;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -28,6 +31,20 @@ public class InsuranceController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public Mono<InsuranceEntity> createproduct(@RequestBody InsuranceEntity entity) {
 		return service.insertintorepo(entity);
+		
+	}
+	
+	@GetMapping("/stock/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public Mono<InsuranceEntity> getproductbyid(@PathVariable String id){
+	return service.getbyid(id);
+	}
+	
+	@GetMapping("/stock")
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	public Flux<InsuranceEntity> getAllProducts(){
+		return service.getAllProducts();
+		
 		
 	}
 
