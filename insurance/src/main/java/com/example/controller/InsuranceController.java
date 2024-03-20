@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.entity.InsuranceEntity;
+import com.example.dto.InsuranceDto;
 import com.example.repo.InsuranceRepo;
 import com.example.service.InsuranceService;
 
@@ -31,27 +31,27 @@ public class InsuranceController {
 	
 	@PostMapping("/stock")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Mono<InsuranceEntity> createinsurance(@RequestBody InsuranceEntity entity) {
-		return service.insertintorepo(entity);
+	public Mono<InsuranceDto> createinsurance(@RequestBody InsuranceDto dto) {
+		return service.insertintorepo(dto);
 		
 	}
 	
 	@GetMapping("/stock/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Mono<InsuranceEntity> getinsurancebyid(@PathVariable String id){
+	public Mono<InsuranceDto> getinsurancebyid(@PathVariable String id){
 	return service.getbyid(id);
 	}
 	
 	@GetMapping("/stock")
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public Flux<InsuranceEntity> getAllInsurances(){
+	public Flux<InsuranceDto> getAllInsurances(){
 		return service.getAllProducts();
 	}
 	
 	 @PutMapping("/stock/{id}")
 	 @ResponseStatus(HttpStatus.ACCEPTED)
-	 public Mono<InsuranceEntity> updateInsurance(@PathVariable String id, @RequestBody InsuranceEntity entity){
-		return service.updatebyId(id,entity);	 
+	 public Mono<InsuranceDto> updateInsurance(@PathVariable String id, @RequestBody InsuranceDto dto){
+		return service.updatebyId(id,dto);	 
 	 }
 	 
 		@DeleteMapping("/stock/{id}")
