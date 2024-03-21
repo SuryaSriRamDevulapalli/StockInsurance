@@ -10,7 +10,7 @@ import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 
 @SpringBootApplication
 @ComponentScan(basePackages = "com.example")
-@EnableR2dbcRepositories(basePackageClasses = com.example.repo.InsuranceRepo.class)
+@EnableR2dbcRepositories(basePackageClasses = {com.example.repo.InsuranceRepo.class,com.example.repo.LoginRepo.class})
 @EntityScan("com.example.*")
 public class StockInsuranceApplication {
 
