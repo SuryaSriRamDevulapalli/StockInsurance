@@ -63,5 +63,4 @@ public class InsuranceController {
 		public Mono<Void> deletebyid(@PathVariable String id) {
 			return service.deleteById(id);
 		}
-
 }

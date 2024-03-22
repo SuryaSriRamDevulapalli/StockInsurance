@@ -47,7 +47,7 @@ public class InsuranceServiceImpl implements InsuranceService {
 		String type = dto.getTypeofstock();
 		Double riskfactor = 0.0;
 		
-		if(type.equalsIgnoreCase("Buliding")) {
+		if(type.equalsIgnoreCase("Building")) {
 			riskfactor = 0.85;
 		}else if(type.equalsIgnoreCase("Content")){
 			riskfactor = 0.80;
@@ -82,7 +82,7 @@ public class InsuranceServiceImpl implements InsuranceService {
 		int stock = dto.getStockvalue();
 		int premiumcharges = dto.getPremiumcharges();
 		
-		double insurance = (premiumcharges + (stock* riskfactor) + premiumvalue)/12;
+		double insurance = (premiumcharges + (stock*(1- riskfactor)) + premiumvalue)/12;
 		return insurance;
 	}
 
