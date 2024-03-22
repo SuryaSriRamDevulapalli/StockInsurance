@@ -82,7 +82,7 @@ public class InsuranceServiceImpl implements InsuranceService {
 		int stock = dto.getStockvalue();
 		int premiumcharges = dto.getPremiumcharges();
 		
-		double insurance = (premiumcharges + (stock* riskfactor) + premiumvalue)/12;
+		double insurance = (premiumcharges + (stock*(1- riskfactor)) + premiumvalue)/12;
 		return insurance;
 	}
 
