@@ -34,7 +34,7 @@ public class InsuranceServiceImpl implements InsuranceService {
 		dto.setAsNew(true);
 		InsuranceEntity entity = InsuranceMapper.maptoinsuranceentity(dto);
 		Mono<InsuranceEntity> inserted = repo.save(entity);
-		log.info("Inserting InsuranceEntity into the repository: {}", dto);
+		log.info("Inserting InsuranceEntity into  repository: {}", dto);
 		return inserted.map((insurance)->InsuranceMapper.maptoinsurancedto(insurance));
 		//return repo.save(entity);
 	}
