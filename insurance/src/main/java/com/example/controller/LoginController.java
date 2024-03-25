@@ -15,6 +15,7 @@ import com.example.entity.LoginEntity;
 import com.example.repo.LoginRepo;
 import com.example.service.LoginService;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @CrossOrigin(origins = 
@@ -39,7 +40,19 @@ public class LoginController {
 	@PostMapping("/login")
 	@ResponseStatus(HttpStatus.OK)
 	public Mono<Boolean> validateuser(@RequestBody LoginEntity entity){
-		return service.validateUser(entity.getUsername(), entity.getPassword());
+		return service.validateUser(entity.getId(),entity.getUsername(), entity.getPassword());
+	}
+	
+	@GetMapping("/users")
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	public Flux<LoginEntity> getAllInsurances(){
+		return service.getAllUsers();
+	}
+	
+	@GetMapping("/register/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public Mono<LoginEntity> getinsurancebyid(@PathVariable String id){
+	return service.getbyid(id);
 	}
 	
 	@GetMapping("/checkusername/{username}")
